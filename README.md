@@ -1,10 +1,11 @@
 <p align="center">
-  
-  ![GeoDuels](https://i.imgur.com/Y3l5XEW.png)
+<img src="https://i.imgur.com/Y3l5XEW.png" width="100" height="100" border="10"/>
+</p>
 
   Google Chrome extension. Adds a duels gamemode to Geotastic.net! The lower-scoring team loses HP equal to their difference in score (times a multiplier in later rounds). Lose all your HP and it's game over.
 
-  ![GeoDuels UI](https://i.imgur.com/g4nSrXx.png)
+<p align="center">
+<img src="https://i.imgur.com/g4nSrXx.png" width="100" height="100" border="10"/>
 </p>
 
 Some special features include:
