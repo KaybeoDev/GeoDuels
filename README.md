@@ -1,5 +1,7 @@
-# GeoDuels
+![GeoDuels](https://i.imgur.com/Y3l5XEW.png)
 Google Chrome extension. Adds a duels gamemode to Geotastic.net! The lower-scoring team loses HP equal to their difference in score (times a multiplier in later rounds). Lose all your HP and it's game over.
+
+![GeoDuels UI](https://i.imgur.com/g4nSrXx.png)
 
 Some special features include:
 - Customize starting health and damage multipliers (click the extension icon).
