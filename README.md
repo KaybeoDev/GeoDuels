@@ -25,3 +25,12 @@ Also... this extension is janky, but it works. Don't judge my sloppy code too ha
 **tabs**: The extension needs to make sure you're on the Geotastic website before trying to start a Duels game. (P.S. other than the pop-up for configuring settings, nothing else will run if you aren't on https://*.geotastic.net/\*.)
 
 **clipboardRead**: For your convenience, there's a button that'll paste preset settings in. To do this, it needs to read your clipboard. It only does this when you click the button - feel free to check the source code to verify this (settings.js, line 80).
+
+## Installation
+
+1. On the GitHub page for GeoDuels, click the green "<> Code" button, and select "Download ZIP".
+2. Unzip the file.
+3. Go to chrome://extensions in Google Chrome (just type "chrome://extensions" in the search bar at the top).
+4. Turn on Developer Mode in the top right.
+5. Click "Load unpacked" and then select the unzipped GeoDuels folder.
+6. You're all set! Pin the extension if you want to easily access the settings popup.
