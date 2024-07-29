@@ -15,6 +15,6 @@ Also... this extension is janky, but it works. Don't judge my sloppy code too ha
 
 **storage**: There are some configurable options in this extension, such as starting health. Using Chrome storage allows these values to be saved between sessions.
 
-**tabs**: The extension needs to make sure you're on the Geotastic website before I try to setup a scoreboard. (P.S. other than the pop-up for configuring settings, nothing else will run if you aren't on https://*.geotastic.net/\*.)
+**tabs**: The extension needs to make sure you're on the Geotastic website before trying to start a Duels game. (P.S. other than the pop-up for configuring settings, nothing else will run if you aren't on https://*.geotastic.net/\*.)
 
 **clipboardRead**: For your convenience, there's a button that'll paste preset settings in. To do this, it needs to read your clipboard. It only does this when you click the button - feel free to check the source code to verify this (settings.js, line 80).
