@@ -28,7 +28,7 @@ Also... this extension is janky, but it works. Don't judge my sloppy code too ha
 
 ## Installation
 
-1. On the GitHub page for GeoDuels, click the green "<> Code" button, and select "Download ZIP".
+1. On the GitHub page for GeoDuels, click the green "<> Code" button, and select "Download ZIP". Alternatively, go to "Releases" and download "Source code (zip)".
 2. Unzip the file.
 3. Go to chrome://extensions in Google Chrome (just type "chrome://extensions" in the search bar at the top).
 4. Turn on Developer Mode in the top right.
