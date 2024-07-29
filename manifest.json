@@ -1,0 +1,34 @@
+{
+    "name": "GeoDuels",
+    "version": "1.0.0",
+    "description": "Adds a duels gamemode to Geotastic.net! ** Only supports custom, 2-team games (for now).",
+    "permissions": ["storage", "tabs", "clipboardRead"],
+    "host_permissions": ["https://*.geotastic.net/*"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://*.geotastic.net/*"],
+        "js": ["contentScript.js", "settings.js"]
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "assets/logo.png"
+        ],
+        "matches": ["https://*.geotastic.net/*"]
+      }
+    ],
+    "action": {
+      "default_icon": {
+        "16": "assets/ext-icon.png",
+        "24": "assets/ext-icon.png",
+        "32": "assets/ext-icon.png"
+      },
+      "default_title": "GeoDuels",
+      "default_popup": "settings.html"
+    },
+    "manifest_version": 3
+}
