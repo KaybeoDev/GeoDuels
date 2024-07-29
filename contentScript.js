@@ -4,8 +4,8 @@
     let multiplierAdd, multiplierStart, multiplierMax, roundMultiplier, nextRoundMultiplier;
     multiplierAdd = 0.5;
     multiplierStart = 4;
-    multiplierMax = 4;
-    startingHealth = 500;
+    multiplierMax = 6;
+    startingHealth = 7500;
     let teamHealths = {};
     let pleaseStopRepeating = 0;
 
@@ -244,10 +244,10 @@
 
             .next-round-details {
                 background-color: #242424;
-                border: 1px solid #aaa;
-                color: #aaaaaa;
-                animation: fadeInUp 0.39s ease-in-out 3.50s forwards;
-                font-size: 12.5px;
+                border: 1px solid #ddd;
+                color: #dddddd;
+                animation: fadeInUp 0.39s ease-in-out 3.65s forwards;
+                font-size: 15.5px;
                 opacity: 0;
             }
 
@@ -379,6 +379,7 @@
 
         // Function to create and update progress bar
         const createOrUpdateProgressTable = (initialValue1, finalValue1, initialValue2, finalValue2) => {
+            console.log("Now making table NOW MAKING TABLE!!!!! =====")
             const maxValue = startingHealth;
 
             // Compute percentages
@@ -552,18 +553,19 @@
                 console.log("No team scores found.");
             }
             else {
-                console.log(teamScores);
+                console.log("Found team scores");
         
                 // Extract the value inside <span>
                 const scoreValue = teamScores.querySelector('span')?.textContent;
+                console.log("Score values", scoreValue);
         
                 if (scoreValue && pleaseStopRepeating == 0) {
                     pleaseStopRepeating = 1;
                     // Get the specific scores for Team 1 and Team 2 !!! todo make this work in a quick play 1v1, too
                     const allScores = document.getElementsByClassName('score-label');
                     const filteredScores = Array.from(allScores).filter(label => !label.classList.contains('shrink'));
-                    team1score = filteredScores[0].querySelector('span')?.textContent;
-                    team2score = filteredScores[1].querySelector('span')?.textContent;
+                    team1score = parseFloat(filteredScores[0].querySelector('span')?.textContent);
+                    team2score = parseFloat(filteredScores[1].querySelector('span')?.textContent);
                     
                     grabRoundNumber();
                     if (roundNo == 1) {
@@ -573,23 +575,27 @@
                     // (checking if the team order on screen matches that in the dictionary for reasons I promise make sense)
                     // blatant abuse of dot notation for malicious gain 
                     if (team1name == document.getElementsByClassName("team-name")[2].querySelector('.font-weight-bold').textContent) {
-                        console.log(team1name);
+                        console.log(team1name, team1score, team2name, team2score);
                     }
                     else {
-                        console.log(team2name);
+                        console.log(team2name, team2score, team1name, team1score, "Flipped");
                         [team1score, team2score] = [team2score, team1score];
                     }
 
+                    console.log("Attempting to solve", roundNo, "solved thru", solvedRounds);
                     // Sometimes it reads the scores several times. IDK how to prevent that, so just make sure it can't result in taking damage more than once:
-                    if (solvedRounds < roundNo) {
+                    if (parseFloat(solvedRounds) < parseFloat(roundNo)) {
+                        console.log("We're in");
                         // Example values for progress bars
                         let initialValue1 = teamHealths[team1name]; // Starting value for animation
                         let initialValue2 = teamHealths[team2name];
                         let finalValue1;
                         let finalValue2;
 
+                        console.log("Still in");
                         // Determine which team is losing HP, and how much, then update my one-size-fits-all storage solution, a global dictionary
                         if (team1score > team2score) {
+                            console.log(team1score, team2score, "XYZXYZ");
                             unadjustedDamage = team1score - team2score;
                             adjustedDamage = unadjustedDamage * roundMultiplier;
                             finalValue1 = initialValue1;
@@ -598,6 +604,7 @@
                             teamHealths[team2name] = finalValue2;
                         }
                         else if (team2score > team1score) {
+                            console.log(team1score, team2score, "ABCABC");
                             unadjustedDamage = team2score - team1score;
                             adjustedDamage = unadjustedDamage * roundMultiplier;
                             finalValue1 = initialValue1 - adjustedDamage;
@@ -606,6 +613,7 @@
                             teamHealths[team2name] = finalValue2;
                         }
                         else {
+                            console.log(team1score, team2score, "TIETIE");
                             unadjustedDamage = 0;
                             adjustedDamage = 0;
                             finalValue1 = initialValue1;
@@ -613,6 +621,7 @@
                             teamHealths[team1name] = finalValue1;
                             teamHealths[team2name] = finalValue2;
                         }
+                        console.log("We're out");
                         // Create or update the progress table
                         createOrUpdateProgressTable(initialValue1, finalValue1, initialValue2, finalValue2);
                         solvedRounds = roundNo;
@@ -640,13 +649,14 @@
         }
         
         const grabRoundNumber = () => {
+            console.log("Detecting Round...")
             let roundInfoElements = document.querySelector(".round-info");
             // Suffer at the hand of my nested conditionals
             if (roundInfoElements) {
                 roundInfoContent = roundInfoElements.textContent;
                 if (roundInfoContent) {
                     roundNo = roundInfoContent.match(/Round (\d+) \/ \d+ finished/)[1]; // Yippee, regex
-                    console.log(roundNo, multiplierStart, multiplierAdd, multiplierMax);
+                    console.log("Rd", roundNo, "Mult", multiplierStart, multiplierAdd, multiplierMax);
                     if (parseFloat(roundNo) < multiplierStart) {
                         roundMultiplier = 1;
                         if (parseFloat(roundNo) + 1 == multiplierStart) {
@@ -662,7 +672,6 @@
                     }
                     if (parseFloat(roundNo) == 1) {
                         solvedRounds = 0;
-                        gameOver = 0;
                     }
                 }
             }
@@ -679,7 +688,8 @@
                         // *megamind* no trim?
                         if (descendant.className === 'score-label') {
                             console.log("Descendant with exact class 'score-label' found:", descendant);
-                            checkForScores();
+                            // maybe waiting fixes my ails?
+                            setTimeout(checkForScores, 50);
                         }
                     });
                 }
