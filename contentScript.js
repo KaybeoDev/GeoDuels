@@ -349,8 +349,8 @@
                 console.log('No settings found.');
                 multiplierAdd = 0.5;
                 multiplierStart = 4;
-                multiplierMax = 4;
-                startingHealth = 500;
+                multiplierMax = 6;
+                startingHealth = 7500;
             }
         }
     });
